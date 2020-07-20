@@ -42,6 +42,9 @@
       }
     ],
 
+    "class-methods-use-this": "off",
+    "max-classes-per-file": "off",
+
     "import/extensions": [
       "error",
       "ignorePackages",
