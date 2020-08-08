@@ -3,7 +3,7 @@ import { Repository, EntityRepository } from 'typeorm';
 import Category from '../models/Category';
 
 @EntityRepository(Category)
-class CategoryRepository extends Repository<Category> {
+class CategoriesRepository extends Repository<Category> {
   public async findByTitleOrCreate(title: string): Promise<Category> {
     const category = await this.findOne({
       where: {
@@ -25,4 +25,4 @@ class CategoryRepository extends Repository<Category> {
   }
 }
 
-export default CategoryRepository;
+export default CategoriesRepository;

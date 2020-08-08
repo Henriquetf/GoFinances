@@ -1,6 +1,10 @@
+import { getCustomRepository } from 'typeorm';
+
 import AppError from '../errors/AppError';
+
 import Transaction, { TransactionType } from '../models/Transaction';
-import CategoryRepository from '../repositories/CategoryRepository';
+
+import CategoriesRepository from '../repositories/CategoriesRepository';
 import TransactionsRepository, {
   CreateTransactionData as RepositoryCreateTransactionData,
 } from '../repositories/TransactionsRepository';
@@ -10,44 +14,36 @@ interface CreateTransactionData extends RepositoryCreateTransactionData {
 }
 
 class CreateTransactionService {
-  private transactionsRepository: TransactionsRepository;
-
-  private categoryRepository: CategoryRepository;
-
-  constructor(
-    transactionsRepository: TransactionsRepository,
-    categoryRepository: CategoryRepository,
-  ) {
-    this.transactionsRepository = transactionsRepository;
-    this.categoryRepository = categoryRepository;
-  }
-
   public async execute({
     title,
     type,
     value,
     category,
   }: CreateTransactionData): Promise<Transaction> {
+    const transactionsRepository = getCustomRepository(TransactionsRepository);
+
     if (type === TransactionType.OUTCOME) {
-      const currentBalance = await this.transactionsRepository.getBalance();
+      const currentBalance = await transactionsRepository.getBalance();
 
       if (value > currentBalance.total) {
         throw new AppError('Not enough balance available.');
       }
     }
 
-    const transactionCategory = await this.categoryRepository.findByTitleOrCreate(
+    const categoriesRepository = getCustomRepository(CategoriesRepository);
+
+    const transactionCategory = await categoriesRepository.findByTitleOrCreate(
       category,
     );
 
-    const newTransaction = this.transactionsRepository.create({
+    const newTransaction = transactionsRepository.create({
       title,
       type,
       value,
       category: transactionCategory,
     });
 
-    await this.transactionsRepository.save(newTransaction);
+    await transactionsRepository.save(newTransaction);
 
     return newTransaction;
   }
