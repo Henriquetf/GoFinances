@@ -17,11 +17,6 @@ describe('Transaction', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
 
-    await connection.query('DROP TABLE IF EXISTS transactions');
-    await connection.query('DROP TABLE IF EXISTS categories');
-    await connection.query('DROP TABLE IF EXISTS migrations');
-    await connection.query('DROP TYPE IF EXISTS transaction_type');
-
     await connection.runMigrations();
   });
 
