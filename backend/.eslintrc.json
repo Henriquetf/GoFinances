@@ -44,6 +44,7 @@
 
     "class-methods-use-this": "off",
     "max-classes-per-file": "off",
+    "import/prefer-default-export": "off",
 
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": ["error"],

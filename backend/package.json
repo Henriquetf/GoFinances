@@ -35,6 +35,7 @@
     "lint:fix": "yarn lint --fix",
     "dev:start": "ts-node src/server.ts",
     "dev:server": "ts-node-dev --inspect --respawn --transpile-only --no-notify src/server.ts",
-    "test": "NODE_ENV=test jest"
+    "test": "NODE_ENV=test jest",
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
   }
 }

@@ -1,5 +1,7 @@
-import Transaction, { CreateTransactionData } from '../models/Transaction';
-import TransactionRepository from '../repositories/TransactionRepository';
+import Transaction from '../models/Transaction';
+import TransactionRepository, {
+  CreateTransactionData,
+} from '../repositories/TransactionRepository';
 
 class CreateTransactionService {
   private transactionRepository: TransactionRepository;

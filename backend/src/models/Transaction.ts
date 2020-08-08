@@ -1,24 +1,38 @@
-import { uuid } from 'uuidv4';
+import {
+  Entity,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Column,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-export type AllowedTransactionTypes = 'income' | 'outcome';
+export enum TransactionType {
+  INCOME = 'income',
+  OUTCOME = 'outcome',
+}
 
-export type CreateTransactionData = Omit<Transaction, 'id'>;
-
+@Entity('transactions')
 class Transaction {
-  readonly id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id!: string;
 
-  title: string;
+  @Column()
+  title!: string;
 
-  value: number;
+  @Column()
+  type!: TransactionType;
 
-  type: AllowedTransactionTypes;
+  @Column({ type: 'numeric' })
+  value!: number;
 
-  constructor({ title, type, value }: CreateTransactionData) {
-    this.id = uuid();
-    this.title = title;
-    this.type = type;
-    this.value = value;
-  }
+  @Column({ name: 'category_id' })
+  categoryId!: number;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt!: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt!: Date;
 }
 
 export default Transaction;

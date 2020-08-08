@@ -8,7 +8,7 @@
   "database": "gofinances",
 
   "entities": ["src/models/**/*.ts"],
-  "migrations": ["src/migrations/**/*.ts"],
+  "migrations": ["src/database/migrations/**/*.ts"],
   "subscribers": ["src/subscriber/**/*.ts"],
 
   "cli": {
