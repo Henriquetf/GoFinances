@@ -4,7 +4,11 @@ import {
   UpdateDateColumn,
   Column,
   PrimaryGeneratedColumn,
+  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
+
+import Category from './Category';
 
 export enum TransactionType {
   INCOME = 'income',
@@ -24,6 +28,10 @@ class Transaction {
 
   @Column({ type: 'numeric' })
   value!: number;
+
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category!: Category;
 
   @Column({ name: 'category_id' })
   categoryId!: number;

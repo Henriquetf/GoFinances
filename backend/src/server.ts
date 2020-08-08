@@ -1,9 +1,9 @@
 import app from './app';
-import createConnection from './database';
+import createDefaultConnection from './database';
 
 const port = 3333;
 
-createConnection()
+createDefaultConnection()
   .then(() => {
     app.listen(port, () => {
       // eslint-disable-next-line no-console

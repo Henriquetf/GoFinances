@@ -20,6 +20,7 @@ describe('Transaction', () => {
     await connection.query('DROP TABLE IF EXISTS transactions');
     await connection.query('DROP TABLE IF EXISTS categories');
     await connection.query('DROP TABLE IF EXISTS migrations');
+    await connection.query('DROP TYPE IF EXISTS transaction_type');
 
     await connection.runMigrations();
   });
@@ -115,7 +116,7 @@ describe('Transaction', () => {
     const transaction = await transactionsRepository.findOne({
       where: {
         title: 'March Salary',
-        category_id: category?.id,
+        categoryId: category?.id,
       },
     });
 
@@ -148,7 +149,7 @@ describe('Transaction', () => {
     const transaction = await transactionsRepository.findOne({
       where: {
         title: 'March Salary',
-        category_id: insertedCategoryId,
+        categoryId: insertedCategoryId,
       },
     });
 

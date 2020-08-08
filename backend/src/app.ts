@@ -3,6 +3,7 @@ import 'express-async-errors';
 
 import express, { Request, Response, NextFunction } from 'express';
 
+import AppError from './errors/AppError';
 import routes from './routes';
 
 const app = express();
@@ -16,9 +17,16 @@ app.use(
     // eslint-disable-next-line no-console
     console.error(err);
 
+    if (err instanceof AppError) {
+      return response.status(err.statusCode).json({
+        status: 'error',
+        message: err.message,
+      });
+    }
+
     return response.status(500).json({
       status: 'error',
-      error: 'Internal server error',
+      message: 'Internal server error',
     });
   },
 );
