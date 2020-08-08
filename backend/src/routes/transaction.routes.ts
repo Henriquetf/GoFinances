@@ -11,37 +11,25 @@ const createTransactionService = new CreateTransactionService(
 const transactionRouter = Router();
 
 transactionRouter.get('/', (request, response) => {
-  try {
-    const transactions = transactionRepository.findAll();
-    const currentBalance = transactionRepository.getBalance();
+  const transactions = transactionRepository.findAll();
+  const currentBalance = transactionRepository.getBalance();
 
-    return response.json({
-      transactions,
-      balance: currentBalance,
-    });
-  } catch (err) {
-    return response.status(400).json({
-      error: err.message,
-    });
-  }
+  return response.json({
+    transactions,
+    balance: currentBalance,
+  });
 });
 
 transactionRouter.post('/', (request, response) => {
-  try {
-    const { title, type, value } = request.body;
+  const { title, type, value } = request.body;
 
-    const newTransaction = createTransactionService.execute({
-      title,
-      type,
-      value,
-    });
+  const newTransaction = createTransactionService.execute({
+    title,
+    type,
+    value,
+  });
 
-    return response.json(newTransaction);
-  } catch (err) {
-    return response.status(400).json({
-      error: err.message,
-    });
-  }
+  return response.json(newTransaction);
 });
 
 export default transactionRouter;

@@ -1,5 +1,16 @@
 import app from './app';
+import createConnection from './database';
 
-app.listen(3333, () => {
-  console.log('Server started on port 3333');
-});
+const port = 3333;
+
+createConnection()
+  .then(() => {
+    app.listen(port, () => {
+      // eslint-disable-next-line no-console
+      console.log(`Server started on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error(error);
+  });
