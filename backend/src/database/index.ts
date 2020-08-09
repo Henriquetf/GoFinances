@@ -5,10 +5,14 @@ async function createDefaultConnection(
 ): Promise<Connection> {
   const defaultOptions = await getConnectionOptions(optionName);
 
-  return createConnection({
+  const config = {
     ...defaultOptions,
     name: 'default',
-  });
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+  };
+
+  return createConnection(config);
 }
 
 export default createDefaultConnection;
