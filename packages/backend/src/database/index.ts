@@ -8,8 +8,6 @@ async function createDefaultConnection(
   const config = {
     ...defaultOptions,
     name: 'default',
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
   };
 
   return createConnection(config);
