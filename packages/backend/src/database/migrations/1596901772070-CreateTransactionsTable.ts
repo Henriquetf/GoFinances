@@ -23,13 +23,16 @@ export class CreateTransactionsTable1596901772070
         CONSTRAINT pk_transactions_id PRIMARY KEY ("id"),
         CONSTRAINT fk_transactions_categories_id
           FOREIGN KEY ("category_id") REFERENCES categories ("id")
-          ON DELETE SET NULL
           ON UPDATE CASCADE
       )
     `);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(/* sql */ `
+      ALTER TABLE "transactions" DROP CONSTRAINT "fk_transactions_categories_id"
+    `);
+
     await queryRunner.query(/* sql */ `
       DROP TABLE "transactions"
     `);

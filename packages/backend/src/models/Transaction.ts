@@ -20,17 +20,33 @@ class Transaction {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 200,
+  })
   title!: string;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: TransactionType,
+    enumName: 'transaction_type',
+  })
   type!: TransactionType;
 
-  @Column({ type: 'numeric' })
+  @Column({
+    type: 'numeric',
+    precision: 20,
+    scale: 2,
+  })
   value!: number;
 
-  @ManyToOne(() => Category)
-  @JoinColumn({ name: 'category_id' })
+  @ManyToOne(() => Category, {
+    onUpdate: 'CASCADE',
+  })
+  @JoinColumn({
+    name: 'category_id',
+    referencedColumnName: 'id',
+  })
   category!: Category;
 
   @Column({ name: 'category_id' })

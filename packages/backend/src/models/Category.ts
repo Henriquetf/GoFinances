@@ -11,7 +11,10 @@ class Category {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 200,
+  })
   title!: string;
 
   @CreateDateColumn({ name: 'created_at' })
