@@ -4,7 +4,7 @@ import { resolve } from 'path';
 import { Options, diskStorage } from 'multer';
 
 const storage = diskStorage({
-  destination: resolve(__dirname, '..', '..', 'tmp', 'uploads'),
+  destination: resolve(__dirname, '..', '..', 'var', 'tmp', 'uploads'),
   filename(request, file, callback) {
     const newFilename = randomBytes(32).toString('hex');
 
