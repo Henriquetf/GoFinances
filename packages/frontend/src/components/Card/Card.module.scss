@@ -1,0 +1,47 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 300px;
+
+  background: #ffffff;
+  color: #363f5f;
+
+  word-break: break-word;
+
+  border-radius: 5px;
+  padding: 22px 32px;
+}
+
+.card--outcome {
+  .title {
+    color: #969cb3;
+  }
+}
+
+.card--total {
+  background: #ff872c;
+  color: #ffffff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1rem;
+}
+
+.money {
+  margin-top: 14px;
+
+  font-size: 36px;
+  font-weight: 500;
+}
+
+svg {
+  flex-shrink: 0;
+  margin-left: 14px;
+}

@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  max-width: calc(1120px + 24px * 2);
+
+  margin: 0 auto;
+  padding: 0 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  transform: translateY(-108px);
+}
+
+.cardContainer {
+  display: flex;
+
+  gap: 32px;
+  flex-wrap: wrap;
+
+  margin-bottom: 54px;
+}
+
+.transactionsTable {
+  width: 100%;
+  border-spacing: 0 8px;
+}
+
+.transactionsTable__header {
+  color: #969cb3;
+
+  th {
+    padding: 0 32px;
+    font-weight: 400;
+    text-align: left;
+  }
+}
+
+.transactionsTable__row {
+  border-radius: 5px;
+
+  td {
+    background: #ffffff;
+    padding: 20px 32px;
+  }
+
+  td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+.transactionsTable__title {
+}
+
+.transactionsTable__price {
+}
+
+.transactionsTable__category {
+  color: #969cb3;
+}
+
+.transactionsTable__date {
+  color: #969cb3;
+}
