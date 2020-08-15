@@ -44,5 +44,5 @@ export function importTransactionSpreadsheet(file: File) {
 
   formData.append('file', file);
 
-  return api.post('transactions');
+  return api.post('transactions/import', formData);
 }

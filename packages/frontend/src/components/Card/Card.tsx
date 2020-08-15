@@ -10,7 +10,7 @@ const typeStyles = {
 
 interface CardProps {
   title: string;
-  money: number;
+  money?: number;
   type?: keyof typeof typeStyles;
   icon?: React.ComponentType;
   moneyTestid?: string;
@@ -23,7 +23,13 @@ const Card: React.FC<CardProps> = ({
   icon: Icon,
   moneyTestid,
 }) => {
-  const formattedMoney = useMemo(() => formatValue(money), [money]);
+  const formattedMoney = useMemo(() => {
+    if (money === undefined) {
+      return '-';
+    }
+
+    return formatValue(money);
+  }, [money]);
 
   const stylesModifier = type ? styles[typeStyles[type]] : '';
 

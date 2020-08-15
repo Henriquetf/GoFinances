@@ -8,10 +8,10 @@ import styles from './Header.module.scss';
 const Header: React.FC = () => {
   return (
     <section className={styles.header}>
-      <div className={styles.navbar}>
+      <header className={styles.navbar}>
         <img src={logo} alt="GoFinances" />
 
-        <div>
+        <nav>
           <NavLink
             to="/"
             exact
@@ -28,8 +28,8 @@ const Header: React.FC = () => {
           >
             Importar
           </NavLink>
-        </div>
-      </div>
+        </nav>
+      </header>
     </section>
   );
 };

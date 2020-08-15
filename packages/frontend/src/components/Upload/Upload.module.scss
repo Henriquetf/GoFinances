@@ -1,0 +1,40 @@
+.dropContainer {
+  border: 2px dashed #969cb3;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition: height 0.2s ease;
+
+  &:hover {
+    background: darken(#fff, 3%);
+  }
+}
+
+.dropContainer--dragActive {
+  border-color: #12a454;
+}
+
+.dropContainer--dragReject {
+  border-color: #e83f5b;
+}
+
+.uploadMessage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #5636d3;
+  font-size: 16px;
+  line-height: 24px;
+
+  padding: 48px;
+}
+
+.uploadMessage--error {
+  color: #e83f5b;
+}
+
+.uploadMessage--success {
+  color: #12a454;
+}

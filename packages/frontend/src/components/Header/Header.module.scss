@@ -38,8 +38,8 @@
   }
 
   &:hover,
-  &:focus {
-    opacity: 0.6;
+  &:focus:not(:active) {
+    opacity: 0.5;
   }
 }
 
