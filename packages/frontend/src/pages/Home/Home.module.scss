@@ -70,7 +70,12 @@
 .transactionsTable__title {
 }
 
-.transactionsTable__price {
+.transactionsTable__price--income {
+  color: #12a454;
+}
+
+.transactionsTable__price--outcome {
+  color: #e83f5b;
 }
 
 .transactionsTable__category {
