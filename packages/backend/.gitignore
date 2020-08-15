@@ -3,6 +3,6 @@ dist/
 build/
 .vscode/
 *.log
-tmp/*
-!tmp/.gitkeep
+var/
+!.gitkeep
 .env
