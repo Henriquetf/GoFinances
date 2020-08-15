@@ -8,6 +8,7 @@ import ArrowUpCircleIcon from '../../components/Icons/ArrowUpCircleIcon';
 import MoneyIcon from '../../components/Icons/MoneyIcon';
 
 import { listTransactions } from '../../services/api/transaction';
+import formatDate from '../../utils/formatDate';
 import formatValue from '../../utils/formatValue';
 import styles from './Home.module.scss';
 
@@ -16,6 +17,7 @@ interface Transaction {
   title: string;
   formattedValue: string;
   category: string;
+  date: string;
 }
 
 interface Balance {
@@ -40,18 +42,23 @@ const Home: React.FC = () => {
       const responseBalance = response.data.balance;
 
       setTransactions(
-        responseTransactions.map(({ id, value, title, type, category }) => {
-          const isOutcome = type === 'outcome';
-          const formattedValue = formatValue(Number(value) || 0);
+        responseTransactions.map(
+          ({ id, value, title, type, category, createdAt }) => {
+            const isOutcome = type === 'outcome';
+            const formattedValue = formatValue(Number(value) || 0);
 
-          return {
-            id,
-            title,
-            isOutcome: type === 'outcome',
-            category: category.title,
-            formattedValue: isOutcome ? `- ${formattedValue}` : formattedValue,
-          };
-        }),
+            return {
+              id,
+              title,
+              isOutcome: type === 'outcome',
+              category: category.title,
+              formattedValue: isOutcome
+                ? `- ${formattedValue}`
+                : formattedValue,
+              date: formatDate(new Date(createdAt)),
+            };
+          },
+        ),
       );
 
       setBalance(responseBalance);
@@ -100,18 +107,20 @@ const Home: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {transactions.map(({ id, title, formattedValue, category }) => (
-              <tr key={id} className={styles.transactionsTable__row}>
-                <td className={styles.transactionsTable__title}>{title}</td>
-                <td className={styles.transactionsTable__price}>
-                  {formattedValue}
-                </td>
-                <td className={styles.transactionsTable__category}>
-                  {category}
-                </td>
-                <td className={styles.transactionsTable__date} />
-              </tr>
-            ))}
+            {transactions.map(
+              ({ id, title, formattedValue, category, date }) => (
+                <tr key={id} className={styles.transactionsTable__row}>
+                  <td className={styles.transactionsTable__title}>{title}</td>
+                  <td className={styles.transactionsTable__price}>
+                    {formattedValue}
+                  </td>
+                  <td className={styles.transactionsTable__category}>
+                    {category}
+                  </td>
+                  <td className={styles.transactionsTable__date}>{date}</td>
+                </tr>
+              ),
+            )}
           </tbody>
         </table>
       </div>

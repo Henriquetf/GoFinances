@@ -14,6 +14,7 @@ interface ListTransactionsResponse {
     category: {
       title: string;
     };
+    createdAt: string;
   }[];
 }
 

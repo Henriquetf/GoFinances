@@ -23,6 +23,7 @@ class TransactionsRepository extends Repository<Transaction> {
         'transaction.title',
         'transaction.type',
         'transaction.value',
+        'transaction.createdAt',
         'categories.title',
       ])
       .leftJoin('transaction.category', 'categories')
