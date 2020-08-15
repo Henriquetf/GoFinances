@@ -1,31 +1,9 @@
-/* eslint-disable import/first */
-
-jest.mock('../utils/formatValue.ts', () => ({
-  __esModule: true,
-  default: jest.fn().mockImplementation((value: number) => {
-    switch (value) {
-      case 6000:
-        return 'R$ 6.000,00';
-      case 50:
-        return 'R$ 50,00';
-      case 5950:
-        return 'R$ 5.950,00';
-      case 1500:
-        return 'R$ 1.500,00';
-      case 4500:
-        return 'R$ 4.500,00';
-      default:
-        return '';
-    }
-  }),
-}));
-
 import { render, fireEvent, act } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import React from 'react';
 
 import App from '../App';
-import api from '../services/api';
+import api from '../services/api/api';
 
 const apiMock = new MockAdapter(api);
 

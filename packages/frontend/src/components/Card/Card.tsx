@@ -13,12 +13,17 @@ interface CardProps {
   money: number;
   type?: keyof typeof typeStyles;
   icon?: React.ComponentType;
+  moneyTestid?: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, money, type, icon: Icon }) => {
-  const formattedMoney = useMemo(() => {
-    return formatValue(money);
-  }, [money]);
+const Card: React.FC<CardProps> = ({
+  title,
+  money,
+  type,
+  icon: Icon,
+  moneyTestid,
+}) => {
+  const formattedMoney = useMemo(() => formatValue(money), [money]);
 
   const stylesModifier = type ? styles[typeStyles[type]] : '';
 
@@ -29,7 +34,9 @@ const Card: React.FC<CardProps> = ({ title, money, type, icon: Icon }) => {
         {Icon && <Icon />}
       </div>
 
-      <span className={styles.money}>{formattedMoney}</span>
+      <span className={styles.money} data-testid={moneyTestid}>
+        {formattedMoney}
+      </span>
     </div>
   );
 };

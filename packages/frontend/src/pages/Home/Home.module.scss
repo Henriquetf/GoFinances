@@ -1,15 +1,29 @@
-.container {
-  width: 100%;
+.container,
+.cardContainer {
   max-width: calc(1120px + 24px * 2);
 
   margin: 0 auto;
   padding: 0 24px;
+}
 
+.container {
   display: flex;
 
   flex-direction: column;
+  position: relative;
+}
 
-  transform: translateY(-108px);
+.outerCardContainer {
+  padding-top: 72px;
+
+  background: linear-gradient(
+    to bottom,
+    #5636d3 180px,
+    transparent 0%,
+    transparent 100%
+  );
+
+  margin-bottom: 54px;
 }
 
 .cardContainer {
@@ -17,8 +31,6 @@
 
   gap: 32px;
   flex-wrap: wrap;
-
-  margin-bottom: 54px;
 }
 
 .transactionsTable {

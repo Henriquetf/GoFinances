@@ -16,6 +16,19 @@ export interface CreateTransactionData {
 
 @EntityRepository(Transaction)
 class TransactionsRepository extends Repository<Transaction> {
+  public listTransactions(): Promise<Transaction[]> {
+    return this.createQueryBuilder('transaction')
+      .select([
+        'transaction.id',
+        'transaction.title',
+        'transaction.type',
+        'transaction.value',
+        'categories.title',
+      ])
+      .leftJoin('transaction.category', 'categories')
+      .getMany();
+  }
+
   public async getTotalByTransactionType(
     type: TransactionType,
   ): Promise<number> {
